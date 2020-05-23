@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load pages_tags %}
+
+{% block title %}{{ flatpage.title }}{% endblock %}
+
+{% block content %}
+    <h3>Contact form</h3>
+
+    {{ flatpage.content | with_our_team }}
+
+    <hr />
+
+    {% lorem 3 p %}
+
+    <hr />
+
+    <h3>CTA</h3>
+{% endblock %}

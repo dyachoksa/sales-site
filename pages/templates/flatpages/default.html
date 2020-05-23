@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load pages_tags %}
+
+{% block title %}{{ flatpage.title }}{% endblock %}
+
+{% block content %}
+    {{ flatpage.content | with_our_team }}
+
+    <hr />
+
+    {% our_team %}
+
+    <hr />
+
+    It is the {% now "jS \o\f F" %}
+{% endblock %}

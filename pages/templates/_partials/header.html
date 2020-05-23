@@ -1,0 +1,14 @@
+{% load flatpages %}
+{% get_flatpages as flatpages %}
+
+<header>
+    <ul>
+        <li><a href="{% url "home" %}">Home</a></li>
+
+        {% for page in flatpages %}
+            <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+        {% endfor %}
+
+        <li><a href="{% url "our-team" %}">Our Team</a></li>
+    </ul>
+</header>
