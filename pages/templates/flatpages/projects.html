@@ -4,15 +4,13 @@
 {% block title %}{{ flatpage.title }}{% endblock %}
 
 {% block content %}
-    <h3>Contact form</h3>
+    <h1 class="title">{{ flatpage.title }}</h1>
 
-    {{ flatpage.content | with_our_team }}
+    <div class="content">
+        {{ flatpage.content }}
+    </div>
 
-    <hr />
-
-    {% lorem 3 p %}
-
-    <hr />
-
-    <h3>CTA</h3>
+    <div>
+        {% our_team %}
+    </div>
 {% endblock %}

@@ -2,13 +2,36 @@
 {% get_flatpages as flatpages %}
 
 <header>
-    <ul>
-        <li><a href="{% url "home" %}">Home</a></li>
+    <nav class="navbar" role="navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="{% url 'home' %}" class="navbar-item">
+                    <span class="has-text-weight-bold is-uppercase is-family-monospace is-size-3">Turbo Sales</span>
+                </a>
+            </div>
 
-        {% for page in flatpages %}
-            <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-        {% endfor %}
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="{% url "home" %}">Home</a>
+                    <a class="navbar-item" href="{% url "our-team" %}">Our Team</a>
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a href="#" class="navbar-link">More pages</a>
+                        <div class="navbar-dropdown is-boxed">
+                            {% for page in flatpages %}
+                                <a class="navbar-item" href="{{ page.url }}">{{ page.title }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
 
-        <li><a href="{% url "our-team" %}">Our Team</a></li>
-    </ul>
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a href="#" class="button is-primary">Blog</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
 </header>

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
 
     'ckeditor',
+    'django_extensions',
 
     'pages.apps.PagesConfig',
 ]

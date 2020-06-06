@@ -4,13 +4,11 @@
 {% block title %}{{ flatpage.title }}{% endblock %}
 
 {% block content %}
-    {{ flatpage.content | with_our_team }}
+    <div class="content">
+        {{ flatpage.content | with_our_team }}
+    </div>
 
-    <hr />
-
-    {% our_team %}
-
-    <hr />
-
-    It is the {% now "jS \o\f F" %}
+    <div>
+        It is the <strong>{% now "jS \o\f F" %}</strong>
+    </div>
 {% endblock %}
