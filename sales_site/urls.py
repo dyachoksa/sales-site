@@ -19,11 +19,13 @@ from django.contrib import admin
 from django.contrib.flatpages.views import flatpage
 from django.urls import path, re_path
 
+from blog.views import BlogIndexView
 from pages.views import HomePage, OurTeamView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    path('blog/', BlogIndexView.as_view(), name='blog_index'),
     path('our-team/', OurTeamView.as_view(), name='our-team'),
     path('', HomePage.as_view(), name='home'),
 ]
