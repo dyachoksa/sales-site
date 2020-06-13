@@ -4,3 +4,4 @@ django-extensions
 Werkzeug
 Pillow
 django-imagekit
+Faker
