@@ -3,20 +3,28 @@
 {% block title %}Our Team{% endblock %}
 
 {% block content %}
-    <div>
-        <dl>
-            {% for employee in object_list %}
-                <dt>
-                    <strong>{{ employee.name }}</strong>
-                </dt>
-                <dd>
-                    {% if employee.photo.name %}
-                        <p><img src="{{ employee.photo_300x200.url }}" alt="{{ employee.name }}" data-src="{{ employee.photo.url }}" /></p>
-                    {% endif %}
-                    <p><em>{{ employee.position }}</em></p>
-                    <p>{{ employee.description }}</p>
-                </dd>
-            {% endfor %}
-        </dl>
+    <h1 class="title is-1 has-text-centered">Our Team</h1>
+    <hr />
+
+    <div class="columns is-centered is-multiline">
+        {% for employee in object_list %}
+            <div class="mt-4 column is-3 has-text-centered">
+                {% if employee.photo.name %}
+                    <div class="my-2">
+                        <img src="{{ employee.photo_300x200.url }}"
+                             alt="{{ employee.name }}"
+                             data-src="{{ employee.photo.url }}"/>
+                    </div>
+                {% else %}
+                    <div style="height: 200px; display: flex; align-items: center; justify-content: center;"
+                         class="my-2 has-text-centered has-background-light is-vcentered">
+                        <span class="has-text-grey-dark is-capitalized">No Photo</span>
+                    </div>
+                {% endif %}
+                <p class="has-text-primary has-text-weight-bold is-size-4 is-capitalized ">{{ employee.name }}</p>
+                <p class="has-text-grey-dark has-text-weight-medium is-size-6 is-italic">{{ employee.position }}</p>
+                <p class="has-text-grey-light is-size-6">{{ employee.description }}</p>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}

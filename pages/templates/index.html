@@ -1,13 +1,87 @@
 {% extends "base.html" %}
 
+{% block hero %}
+    <section class="hero is-medium is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Sales for Everyone!
+                </h1>
+                <h2 class="subtitle">
+                    Egestas adipisicing? Beatae iure laudantium pede. Fugiat nobis,
+                    mattis curae ex malesuada, soluta quidem, ducimus, optio. Mauris
+                    primis esse ante!
+                </h2>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
 {% block content %}
-    <h1 class="title">Hello, world!</h1>
+    <div class="columns">
+        <div class="column is-9 pr-6">
+            <div class="columns is-multiline">
+                {% for post in latest_posts %}
+                    <div class="mb-5 column is-6">
+                        {% if post.category_id %}
+                            <div class="mb-2">
+                                <span class="tag is-primary is-medium">{{ post.category.name }}</span>
+                            </div>
+                        {% endif %}
+                        <p class="title is-4">{{ post.title }}</p>
+                        <div class="has-text-justified">
+                            {{ post.content | truncatechars_html:250 | safe }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="column">
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1555421689-43cad7100750?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80"
+                     alt="Picture"/>
+            </div>
+        </div>
+    </div>
 
-    <hr>
+    <div class="columns mt-6">
+        <div class="column is-3">
+            <div class="image">
+                <img src="https://images.unsplash.com/photo-1576098788063-9f0dbaa5ccc4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80"
+                     alt="Girls"/>
+            </div>
+        </div>
+        <div class="column ml-6">
+            <p class="title is-2 has-text-primary">Is it matter?</p>
+            <p class="subtitle is-4 has-text-grey is-italic">
+                Corrupti excepteur tenetur, aptent, mauris vulputate, dignissimos
+                veritatis magni?
+            </p>
 
-    <h3>Latest news...</h3>
+            <div class="pt-4 has-text-grey-dark has-text-justified">
+                <p class="pt-4">Cillum iusto illum, quo neque, distinctio, cupidatat delectus mauris
+                    interdum dolore quidem venenatis! Rutrum, incididunt vivamus,
+                    conubia varius. A ultricies, ut quidem, est! Elit? Ridiculus
+                    quibusdam molestiae mattis orci optio excepturi corrupti venenatis
+                    dignissim. Consequuntur, potenti? Provident turpis placerat,
+                    iaculis, eleifend aut! Delectus voluptatum omnis, deserunt luctus
+                    atque! Maiores ornare.</p>
 
-    <hr>
+                <p class="pt-4">Aut turpis fuga fusce imperdiet laboris potenti voluptatum, eum
+                    placeat, fusce hic tenetur, laoreet pariatur! Nostra metus sapiente,
+                    interdum sapien? Harum, quo potenti maxime potenti hymenaeos?
+                    Porttitor posuere! Aliquip fugit dapibus fringilla quod, quos metus
+                    consequatur quidem! Maecenas orci felis, maiores in? Venenatis
+                    nostra eum molestiae! Minim varius do velit.</p>
 
-    <h3>Most popular blog posts...</h3>
+                <p class="pt-4">Aenean aute adipiscing, habitasse nibh iste hendrerit consectetur do
+                    proident? Suspendisse mattis condimentum quae, augue velit tellus
+                    cupiditate! Convallis mauris velit sed modi aperiam, neque
+                    excepturi, fermentum sint dui temporibus, facilisis volutpat
+                    perferendis, cupiditate rem omnis senectus? Dolorem accusamus cursus
+                    eum wisi platea mollit. Mauris necessitatibus? Dui exercitationem,
+                    elit amet.</p>
+            </div>
+        </div>
+    </div>
 {% endblock %}

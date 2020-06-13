@@ -1,7 +1,7 @@
 {% load flatpages %}
 {% get_flatpages as flatpages %}
 
-<header>
+<header class="my-4">
     <nav class="navbar" role="navigation">
         <div class="container">
             <div class="navbar-brand">
@@ -19,7 +19,8 @@
                         <a href="#" class="navbar-link">More pages</a>
                         <div class="navbar-dropdown is-boxed">
                             {% for page in flatpages %}
-                                <a class="navbar-item" href="{{ page.url }}">{{ page.title }}</a>
+                                <a class="navbar-item"
+                                   href="{{ page.url }}">{{ page.title }}</a>
                             {% endfor %}
                         </div>
                     </div>
@@ -28,7 +29,8 @@
                 <div class="navbar-end">
                     <div class="navbar-item">
                         <div class="buttons">
-                            <a href="#" class="button is-primary">Blog</a>
+                            <a href="{% url "admin:index" %}" target="_blank"
+                               class="button is-primary">Admin Portal</a>
                         </div>
                     </div>
                 </div>
