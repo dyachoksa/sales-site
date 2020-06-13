@@ -1,6 +1,9 @@
 <ul>
     {% for employee in employee_list %}
         <li>
+            {% if employee.photo.name %}
+                <span><img src="{{ employee.photo_80x80.url }}" alt="{{ employee.name }}"></span>
+            {% endif %}
             <strong>{{ employee.name }}</strong> / <em>{{ employee.position }}</em>
         </li>
     {% endfor %}

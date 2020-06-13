@@ -10,6 +10,9 @@
                     <strong>{{ employee.name }}</strong>
                 </dt>
                 <dd>
+                    {% if employee.photo.name %}
+                        <p><img src="{{ employee.photo_300x200.url }}" alt="{{ employee.name }}" data-src="{{ employee.photo.url }}" /></p>
+                    {% endif %}
                     <p><em>{{ employee.position }}</em></p>
                     <p>{{ employee.description }}</p>
                 </dd>

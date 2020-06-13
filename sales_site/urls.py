@@ -17,20 +17,23 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.flatpages.views import flatpage
-from django.urls import path, re_path
+from django.urls import path, re_path, include
 
 from blog.views import BlogIndexView
 from pages.views import HomePage, OurTeamView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-
-    path('blog/', BlogIndexView.as_view(), name='blog_index'),
-    path('our-team/', OurTeamView.as_view(), name='our-team'),
-    path('', HomePage.as_view(), name='home'),
-]
-# + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path("admin/", admin.site.urls),
+    path("blog/", BlogIndexView.as_view(), name="blog_index"),
+    path("our-team/", OurTeamView.as_view(), name="our-team"),
+    path("", HomePage.as_view(), name="home"),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [
-    re_path(r'^(?P<url>.*/)$', flatpage),
+    re_path(r"^(?P<url>.*/)$", flatpage),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar  # noqa
+
+    urlpatterns = [path("__debug__/", include(debug_toolbar.urls))] + urlpatterns
