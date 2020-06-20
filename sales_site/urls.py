@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf import settings
+from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.flatpages.views import flatpage
@@ -24,14 +25,16 @@ from pages.views import HomePage, OurTeamView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("i18n/", include("django.conf.urls.i18n")),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += i18n_patterns(
     path("blog/", BlogIndexView.as_view(), name="blog_index"),
     path("our-team/", OurTeamView.as_view(), name="our-team"),
     path("", HomePage.as_view(), name="home"),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-urlpatterns += [
     re_path(r"^(?P<url>.*/)$", flatpage),
-]
+    prefix_default_language=False,
+)
 
 if settings.DEBUG:
     import debug_toolbar  # noqa

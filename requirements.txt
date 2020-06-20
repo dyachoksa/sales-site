@@ -5,3 +5,4 @@ Werkzeug
 Pillow
 django-imagekit
 Faker
+django-modeltranslation

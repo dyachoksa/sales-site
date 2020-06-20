@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load flatpages %}
 {% get_flatpages as flatpages %}
 
@@ -12,9 +13,12 @@
 
             <div class="navbar-menu">
                 <div class="navbar-start">
-                    <a class="navbar-item" href="{% url "home" %}">Home</a>
-                    <a class="navbar-item" href="{% url "blog_index" %}">Blog</a>
-                    <a class="navbar-item" href="{% url "our-team" %}">Our Team</a>
+                    <a class="navbar-item"
+                       href="{% url "home" %}">{% trans "Home" %}</a>
+                    <a class="navbar-item"
+                       href="{% url "blog_index" %}">{% trans "Blog" %}</a>
+                    <a class="navbar-item"
+                       href="{% url "our-team" %}">{% trans "Our Team" %}</a>
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a href="#" class="navbar-link">More pages</a>
                         <div class="navbar-dropdown is-boxed">
@@ -33,6 +37,29 @@
                                class="button is-primary">Admin Portal</a>
                         </div>
                     </div>
+
+                    {% load i18n %}
+
+                    <form action="{% url 'set_language' %}"
+                          class="mt-3"
+                          method="post">{% csrf_token %}
+                        <input name="next" type="hidden" value="{{ redirect_to }}">
+                        <div class="select">
+                            <select name="language">
+                                {% get_current_language as LANGUAGE_CODE %}
+                                {% get_available_languages as LANGUAGES %}
+                                {% get_language_info_list for LANGUAGES as languages %}
+                                {% for language in languages %}
+                                    <option value="{{ language.code }}"
+                                            {% if language.code == LANGUAGE_CODE %}
+                                            selected{% endif %}>
+                                        {{ language.name_local }} ({{ language.code }})
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <input type="submit" value="Go" class="button is-info">
+                    </form>
                 </div>
             </div>
         </div>
